@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Gazi.Sube1.OkulApp.BLL;
+using Gazi.Sube1.OkulApp.MODELS;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -29,61 +31,21 @@ namespace Gazi.KazanMyo.Sube1.OkulApp
 
         private void BtnAra_Click(object sender, EventArgs e)
         {
-            cn = new SqlConnection(@"Data Source=.;Initial Catalog=TestDb2;Integrated Security=true");
-            SqlCommand cmd = new SqlCommand("Select OgrenciId,Ad,Soyad,Numara from tblOgrenciler where Numara=@Numara", cn);
-            SqlParameter[] p = { new SqlParameter("@Numara", txtNo.Text.Trim()) };
-            cmd.Parameters.AddRange(p);
-            OpenConnection();
-            SqlDataReader dr = cmd.ExecuteReader();
-            if (dr.Read())
+            OgrenciBL obl = new OgrenciBL();
+            Ogrenci o = obl.OgrenciBul(int.Parse(txtNo.Text.Trim()));
+            if (o==null)
             {
-                frm.txtAd.Text = dr["Ad"].ToString();
-                frm.txtSoyad.Text = dr["Soyad"].ToString();
-                frm.txtNumara.Text = dr["Numara"].ToString();
-
-                Form1 frm1 = (Form1)Application.OpenForms["Form1"];
-                
+                MessageBox.Show("Öğrenci Bulunamadı");
             }
             else
             {
-                MessageBox.Show("Öğrenci Bulunamadı!!");
-            }
-
-            dr.Close();
-            CloseConnection();
-
-
-        }
-
-
-        public void OpenConnection()
-        {
-            try
-            {
-                if (cn != null && cn.State != ConnectionState.Open)
-                {
-                    cn.Open();
-                }
-            }
-            catch (Exception)
-            {
-                throw;
+                frm.txtAd.Text = o.Ad;
+                frm.txtSoyad.Text = o.Soyad;
+                frm.txtNumara.Text = o.Numara.ToString();
             }
         }
 
-        public void CloseConnection()
-        {
-            try
-            {
-                if (cn != null && cn.State != ConnectionState.Closed)
-                {
-                    cn.Close();
-                }
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
+
+
     }
 }

@@ -27,6 +27,19 @@ namespace Gazi.Sube1.DAL//Data Access Layer
             return sonuc;
         }
 
+        public SqlDataReader ExecuteReader(string cmdtext, SqlParameter[] p)
+        {
+            cn = new SqlConnection(ConfigurationManager.ConnectionStrings["cstr"].ConnectionString);
+            SqlCommand cmd = new SqlCommand(cmdtext, cn);
+            if (p != null)
+            {
+                cmd.Parameters.AddRange(p);
+            }
+            OpenConnection();
+            SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection);           
+            return dr;
+        }
+
         public void OpenConnection()
         {
             try

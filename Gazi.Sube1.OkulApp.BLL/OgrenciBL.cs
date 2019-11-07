@@ -30,5 +30,25 @@ namespace Gazi.Sube1.OkulApp.BLL//Business Logic Layer
             }
 
         }
+
+        public Ogrenci OgrenciBul(int numara)
+        {
+            Helper hlp = new Helper();
+            SqlParameter[] p = { new SqlParameter("@Numara", numara) };
+            SqlDataReader dr = hlp.ExecuteReader("Select OgrenciId,Ad,Soyad,Numara,SinifId from tblOgrenciler Where Numara=@Numara", p);
+            Ogrenci o = null;
+            if (dr.Read())
+            {
+                o = new Ogrenci();
+                o.Ad = dr["Ad"].ToString();
+                o.Soyad = dr["Soyad"].ToString();
+                o.Numara = Convert.ToInt32(dr["Numara"]);
+                o.Ogrenciid = Convert.ToInt32(dr["OgrenciId"]);
+                o.Sinifid = Convert.ToInt32(dr["SinifId"]);
+            }
+            dr.Close();
+            return o;
+
+        }
     }
 }
