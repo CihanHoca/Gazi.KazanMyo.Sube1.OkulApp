@@ -36,25 +36,27 @@
             this.lblNumara = new System.Windows.Forms.Label();
             this.btnKaydet = new System.Windows.Forms.Button();
             this.btnBul = new System.Windows.Forms.Button();
+            this.pnlText = new System.Windows.Forms.Panel();
+            this.pnlText.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtAd
             // 
-            this.txtAd.Location = new System.Drawing.Point(179, 70);
+            this.txtAd.Location = new System.Drawing.Point(8, 15);
             this.txtAd.Name = "txtAd";
             this.txtAd.Size = new System.Drawing.Size(100, 20);
             this.txtAd.TabIndex = 0;
             // 
             // txtSoyad
             // 
-            this.txtSoyad.Location = new System.Drawing.Point(179, 111);
+            this.txtSoyad.Location = new System.Drawing.Point(8, 56);
             this.txtSoyad.Name = "txtSoyad";
             this.txtSoyad.Size = new System.Drawing.Size(100, 20);
             this.txtSoyad.TabIndex = 1;
             // 
             // txtNumara
             // 
-            this.txtNumara.Location = new System.Drawing.Point(179, 149);
+            this.txtNumara.Location = new System.Drawing.Point(8, 94);
             this.txtNumara.Name = "txtNumara";
             this.txtNumara.Size = new System.Drawing.Size(100, 20);
             this.txtNumara.TabIndex = 2;
@@ -106,21 +108,31 @@
             this.btnBul.UseVisualStyleBackColor = true;
             this.btnBul.Click += new System.EventHandler(this.BtnBul_Click);
             // 
+            // pnlText
+            // 
+            this.pnlText.Controls.Add(this.txtAd);
+            this.pnlText.Controls.Add(this.txtSoyad);
+            this.pnlText.Controls.Add(this.txtNumara);
+            this.pnlText.Location = new System.Drawing.Point(171, 59);
+            this.pnlText.Name = "pnlText";
+            this.pnlText.Size = new System.Drawing.Size(121, 128);
+            this.pnlText.TabIndex = 8;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(501, 445);
+            this.Controls.Add(this.pnlText);
             this.Controls.Add(this.btnBul);
             this.Controls.Add(this.btnKaydet);
             this.Controls.Add(this.lblNumara);
             this.Controls.Add(this.lblSoyad);
             this.Controls.Add(this.lblAd);
-            this.Controls.Add(this.txtNumara);
-            this.Controls.Add(this.txtSoyad);
-            this.Controls.Add(this.txtAd);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.pnlText.ResumeLayout(false);
+            this.pnlText.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -136,6 +148,7 @@
         private System.Windows.Forms.Button btnBul;
         public System.Windows.Forms.TextBox txtSoyad;
         public System.Windows.Forms.TextBox txtNumara;
+        private System.Windows.Forms.Panel pnlText;
     }
 }
 

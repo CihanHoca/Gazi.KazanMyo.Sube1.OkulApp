@@ -42,6 +42,7 @@ namespace Gazi.KazanMyo.Sube1.OkulApp
                 frm.txtAd.Text = o.Ad;
                 frm.txtSoyad.Text = o.Soyad;
                 frm.txtNumara.Text = o.Numara.ToString();
+                frm.ogrenciid = o.Ogrenciid;
             }
         }
 

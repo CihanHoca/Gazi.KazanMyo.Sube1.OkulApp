@@ -15,7 +15,7 @@ namespace Gazi.KazanMyo.Sube1.OkulApp
 {
     public partial class Form1 : Form
     {
-
+        public int ogrenciid = 0;
         SqlConnection cn = null;
         public Form1()
         {
@@ -24,14 +24,33 @@ namespace Gazi.KazanMyo.Sube1.OkulApp
         //Katmanlı Mimari
         private void BtnKaydet_Click(object sender, EventArgs e)
         {
+            OgrenciBL obl = new OgrenciBL();
             try
             {
-                OgrenciBL obl = new OgrenciBL();
+
                 Ogrenci ogr = new Ogrenci();
                 ogr.Ad = txtAd.Text.Trim();
                 ogr.Soyad = txtSoyad.Text.Trim();
                 ogr.Numara = int.Parse(txtNumara.Text.Trim());
-                MessageBox.Show(obl.Kaydet(ogr) ? "Başarılı" : "Başarısız");
+                ogr.Ogrenciid = ogrenciid;
+                switch (ogrenciid)
+                {
+                    case 0:
+                        MessageBox.Show(obl.Kaydet(ogr) ? "Başarılı" : "Başarısız");
+                        break;
+                    default:
+                        if (obl.Guncelle(ogr))
+                        {
+                            ogrenciid = 0;
+                            Temizle();
+                            MessageBox.Show("Güncelleme Başarılı");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Güncelleme Başarısız!");
+                        }
+                        break;
+                }
             }
             catch (SqlException ex)
             {
@@ -53,12 +72,25 @@ namespace Gazi.KazanMyo.Sube1.OkulApp
             {
                 MessageBox.Show("Bilinmeyen Hata!!");
             }
+            finally
+            {
+                obl.Dispose();
+            }
+
         }
 
         private void BtnBul_Click(object sender, EventArgs e)
         {
             frmBul frm = new frmBul(this);
             frm.Show();
+        }
+
+        void Temizle()
+        {
+            foreach (Control item in this.Controls["pnlText"].Controls)
+            {
+                item.Text = string.Empty;
+            }
         }
     }
 }

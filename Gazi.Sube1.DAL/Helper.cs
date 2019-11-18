@@ -9,35 +9,46 @@ using System.Threading.Tasks;
 
 namespace Gazi.Sube1.DAL//Data Access Layer
 {
-    public class Helper
+    public class Helper : IDisposable
     {
-        SqlConnection cn = null;
-
+        SqlConnection cn = new SqlConnection(ConfigurationManager.ConnectionStrings["cstr"].ConnectionString);
+        SqlCommand cmd;
         public int ExecuteNonQuery(string cmdtext, SqlParameter[] p)
         {
-            cn = new SqlConnection(ConfigurationManager.ConnectionStrings["cstr"].ConnectionString);
-            SqlCommand cmd = new SqlCommand(cmdtext, cn);
-            if (p != null)
+            try
             {
-                cmd.Parameters.AddRange(p);
+                cmd = new SqlCommand(cmdtext, cn);
+                if (p != null)
+                {
+                    cmd.Parameters.AddRange(p);
+                }
+                OpenConnection();
+                int sonuc = cmd.ExecuteNonQuery();
+                return sonuc;
             }
-            OpenConnection();
-            int sonuc = cmd.ExecuteNonQuery();
-            CloseConnection();
-            return sonuc;
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public SqlDataReader ExecuteReader(string cmdtext, SqlParameter[] p)
         {
-            cn = new SqlConnection(ConfigurationManager.ConnectionStrings["cstr"].ConnectionString);
-            SqlCommand cmd = new SqlCommand(cmdtext, cn);
-            if (p != null)
+            try
             {
-                cmd.Parameters.AddRange(p);
+                cmd = new SqlCommand(cmdtext, cn);
+                if (p != null)
+                {
+                    cmd.Parameters.AddRange(p);
+                }
+                OpenConnection();
+                SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                return dr;
             }
-            OpenConnection();
-            SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection);           
-            return dr;
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public void OpenConnection()
@@ -55,19 +66,10 @@ namespace Gazi.Sube1.DAL//Data Access Layer
             }
         }
 
-        public void CloseConnection()
+        public void Dispose()
         {
-            try
-            {
-                if (cn != null && cn.State != ConnectionState.Closed)
-                {
-                    cn.Close();
-                }
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            cn.Dispose();
+            cmd.Dispose();
         }
     }
 }
