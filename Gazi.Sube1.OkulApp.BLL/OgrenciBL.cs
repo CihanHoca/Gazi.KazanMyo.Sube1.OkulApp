@@ -54,6 +54,7 @@ namespace Gazi.Sube1.OkulApp.BLL//Business Logic Layer
                 SqlParameter[] p = { new SqlParameter("@Numara", numara) };
                 SqlDataReader dr = hlp.ExecuteReader("Select OgrenciId,Ad,Soyad,Numara,SinifId from tblOgrenciler Where Numara=@Numara", p);
                 Ogrenci o = null;
+                
                 if (dr.Read())
                 {
                     o = new Ogrenci();

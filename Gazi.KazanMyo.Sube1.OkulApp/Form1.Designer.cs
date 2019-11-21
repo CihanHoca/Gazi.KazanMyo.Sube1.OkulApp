@@ -37,6 +37,8 @@
             this.btnKaydet = new System.Windows.Forms.Button();
             this.btnBul = new System.Windows.Forms.Button();
             this.pnlText = new System.Windows.Forms.Panel();
+            this.lblSinif = new System.Windows.Forms.Label();
+            this.cmbSiniflar = new System.Windows.Forms.ComboBox();
             this.pnlText.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -90,7 +92,7 @@
             // 
             // btnKaydet
             // 
-            this.btnKaydet.Location = new System.Drawing.Point(179, 193);
+            this.btnKaydet.Location = new System.Drawing.Point(179, 254);
             this.btnKaydet.Name = "btnKaydet";
             this.btnKaydet.Size = new System.Drawing.Size(100, 23);
             this.btnKaydet.TabIndex = 6;
@@ -100,7 +102,7 @@
             // 
             // btnBul
             // 
-            this.btnBul.Location = new System.Drawing.Point(179, 237);
+            this.btnBul.Location = new System.Drawing.Point(179, 298);
             this.btnBul.Name = "btnBul";
             this.btnBul.Size = new System.Drawing.Size(100, 23);
             this.btnBul.TabIndex = 7;
@@ -118,11 +120,30 @@
             this.pnlText.Size = new System.Drawing.Size(121, 128);
             this.pnlText.TabIndex = 8;
             // 
+            // lblSinif
+            // 
+            this.lblSinif.AutoSize = true;
+            this.lblSinif.Location = new System.Drawing.Point(108, 211);
+            this.lblSinif.Name = "lblSinif";
+            this.lblSinif.Size = new System.Drawing.Size(64, 13);
+            this.lblSinif.TabIndex = 9;
+            this.lblSinif.Text = "Sınıf Seçiniz";
+            // 
+            // cmbSiniflar
+            // 
+            this.cmbSiniflar.FormattingEnabled = true;
+            this.cmbSiniflar.Location = new System.Drawing.Point(179, 208);
+            this.cmbSiniflar.Name = "cmbSiniflar";
+            this.cmbSiniflar.Size = new System.Drawing.Size(100, 21);
+            this.cmbSiniflar.TabIndex = 10;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(501, 445);
+            this.Controls.Add(this.cmbSiniflar);
+            this.Controls.Add(this.lblSinif);
             this.Controls.Add(this.pnlText);
             this.Controls.Add(this.btnBul);
             this.Controls.Add(this.btnKaydet);
@@ -131,6 +152,7 @@
             this.Controls.Add(this.lblAd);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.pnlText.ResumeLayout(false);
             this.pnlText.PerformLayout();
             this.ResumeLayout(false);
@@ -149,6 +171,8 @@
         public System.Windows.Forms.TextBox txtSoyad;
         public System.Windows.Forms.TextBox txtNumara;
         private System.Windows.Forms.Panel pnlText;
+        private System.Windows.Forms.Label lblSinif;
+        private System.Windows.Forms.ComboBox cmbSiniflar;
     }
 }
 

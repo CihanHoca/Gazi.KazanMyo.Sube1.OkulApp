@@ -92,5 +92,13 @@ namespace Gazi.KazanMyo.Sube1.OkulApp
                 item.Text = string.Empty;
             }
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            SinifBL sb = new SinifBL();
+            cmbSiniflar.DisplayMember = "SinifAd";
+            cmbSiniflar.ValueMember = "SinifId";
+            cmbSiniflar.DataSource = sb.SinifListesi();
+        }
     }
 }
