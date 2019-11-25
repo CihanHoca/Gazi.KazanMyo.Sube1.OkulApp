@@ -43,6 +43,10 @@ namespace Gazi.KazanMyo.Sube1.OkulApp
                 frm.txtSoyad.Text = o.Soyad;
                 frm.txtNumara.Text = o.Numara.ToString();
                 frm.ogrenciid = o.Ogrenciid;
+                frm.cmbSiniflar.SelectedValue = o.Sinifid;
+                frm.btnVazgec.Visible = true;
+                frm.btnKaydet.Text = "Güncelle";
+                frm.btnSil.Visible = true;
             }
         }
 

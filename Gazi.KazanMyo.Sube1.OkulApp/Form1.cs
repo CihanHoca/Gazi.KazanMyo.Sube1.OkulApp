@@ -17,6 +17,7 @@ namespace Gazi.KazanMyo.Sube1.OkulApp
     {
         public int ogrenciid = 0;
         SqlConnection cn = null;
+
         public Form1()
         {
             InitializeComponent();
@@ -24,24 +25,40 @@ namespace Gazi.KazanMyo.Sube1.OkulApp
         //Katmanlı Mimari
         private void BtnKaydet_Click(object sender, EventArgs e)
         {
+
+            if (cmbSiniflar.SelectedIndex==0)
+            {
+                MessageBox.Show("Sınıf Seçiniz");
+                cmbSiniflar.DroppedDown = true;
+                return;
+            }
+
             OgrenciBL obl = new OgrenciBL();
             try
             {
-
                 Ogrenci ogr = new Ogrenci();
                 ogr.Ad = txtAd.Text.Trim();
                 ogr.Soyad = txtSoyad.Text.Trim();
                 ogr.Numara = int.Parse(txtNumara.Text.Trim());
                 ogr.Ogrenciid = ogrenciid;
+                ogr.Sinifid = (int)cmbSiniflar.SelectedValue;
                 switch (ogrenciid)
                 {
                     case 0:
-                        MessageBox.Show(obl.Kaydet(ogr) ? "Başarılı" : "Başarısız");
+                        if (obl.Kaydet(ogr))
+                        {
+                            MessageBox.Show("Ekleme Başarılı");
+                            Temizle();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Yeniden Deneyiniz!!");
+                        }
+
                         break;
                     default:
                         if (obl.Guncelle(ogr))
                         {
-                            ogrenciid = 0;
                             Temizle();
                             MessageBox.Show("Güncelleme Başarılı");
                         }
@@ -76,7 +93,6 @@ namespace Gazi.KazanMyo.Sube1.OkulApp
             {
                 obl.Dispose();
             }
-
         }
 
         private void BtnBul_Click(object sender, EventArgs e)
@@ -91,6 +107,11 @@ namespace Gazi.KazanMyo.Sube1.OkulApp
             {
                 item.Text = string.Empty;
             }
+            btnKaydet.Text = "Ekle";
+            ogrenciid = 0;
+            cmbSiniflar.SelectedIndex = 0;
+            btnVazgec.Visible = false;
+            btnSil.Visible = false;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -99,6 +120,49 @@ namespace Gazi.KazanMyo.Sube1.OkulApp
             cmbSiniflar.DisplayMember = "SinifAd";
             cmbSiniflar.ValueMember = "SinifId";
             cmbSiniflar.DataSource = sb.SinifListesi();
+        }
+
+        private void BtnVazgec_Click(object sender, EventArgs e)
+        {
+            Temizle();
+        }
+
+        private void BtnSil_Click(object sender, EventArgs e)
+        {
+
+            DialogResult cvp = MessageBox.Show("Kayıt Silinecek. Emin misiniz?", "Silme Onayı", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (cvp == DialogResult.Yes)
+            {
+                OgrenciBL obl = new OgrenciBL();
+                if (obl.OgrenciSil(ogrenciid))
+                {
+                    MessageBox.Show("Silme Başarılı!");
+                    Temizle();
+                }
+                else
+                {
+                    MessageBox.Show("Silme hatalı!");
+                }
+                obl.Dispose();
+            }
+            else
+            {
+                MessageBox.Show("İşlem İptal Edildi");
+                Temizle();
+            }
+
+
+        }
+
+        private void TxtAd_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void TxtAd_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            MessageBox.Show(((int)e.KeyChar).ToString());
         }
     }
 }

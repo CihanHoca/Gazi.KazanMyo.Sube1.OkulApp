@@ -73,6 +73,12 @@ namespace Gazi.Sube1.OkulApp.BLL//Business Logic Layer
             }
         }
 
+        public bool OgrenciSil(int ogrenciid)
+        {
+            SqlParameter[] p = {new SqlParameter("@OgrenciId",ogrenciid) };
+          return hlp.ExecuteNonQuery("Delete from tblOgrenciler where OgrenciId=@OgrenciId", p)>0;
+        }
+
         public void Dispose()
         {
             hlp.Dispose();

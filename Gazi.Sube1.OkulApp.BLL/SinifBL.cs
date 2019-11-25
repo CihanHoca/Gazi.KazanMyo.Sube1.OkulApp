@@ -22,6 +22,7 @@ namespace Gazi.Sube1.OkulApp.BLL
                 lst.Add(new Sinif { Kontenjan = Convert.ToInt32(dr["Kontenjan"]), SinifAd = dr["SinifAd"].ToString(), Sinifid = Convert.ToInt32(dr["SinifId"]) });
             }
             dr.Close();
+            lst.Insert(0, new Sinif { SinifAd = "Seçiniz" });
             return lst;
         }
 
