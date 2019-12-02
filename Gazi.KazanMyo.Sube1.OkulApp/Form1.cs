@@ -26,7 +26,7 @@ namespace Gazi.KazanMyo.Sube1.OkulApp
         private void BtnKaydet_Click(object sender, EventArgs e)
         {
 
-            if (cmbSiniflar.SelectedIndex==0)
+            if (cmbSiniflar.SelectedIndex == 0)
             {
                 MessageBox.Show("Sınıf Seçiniz");
                 cmbSiniflar.DroppedDown = true;
@@ -157,12 +157,26 @@ namespace Gazi.KazanMyo.Sube1.OkulApp
 
         private void TxtAd_TextChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void TxtAd_KeyPress(object sender, KeyPressEventArgs e)
         {
-            MessageBox.Show(((int)e.KeyChar).ToString());
+            e.Handled = Kontrol(e.KeyChar);
+        }
+
+        bool Kontrol(char karakter)
+        {
+            int[] dizi = { 231, 199, 351, 350, 287, 286, 252, 220, 304, 305, 246, 214, 8, 32 };
+
+            if ((karakter >= 65 && karakter <= 90) || (karakter >= 97 && karakter <= 122) || dizi.Contains(karakter))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }

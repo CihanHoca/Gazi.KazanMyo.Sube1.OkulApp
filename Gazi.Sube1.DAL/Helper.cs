@@ -51,6 +51,14 @@ namespace Gazi.Sube1.DAL//Data Access Layer
             }
         }
 
+        public DataTable GetDataTable(string cmdtext)
+        {
+            SqlDataAdapter da = new SqlDataAdapter(cmdtext, cn);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            return dt;
+        }
+
         public void OpenConnection()
         {
             try

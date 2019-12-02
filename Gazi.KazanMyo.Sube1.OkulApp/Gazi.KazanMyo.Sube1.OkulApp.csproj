@@ -58,6 +58,18 @@
     <Compile Include="frmBul.Designer.cs">
       <DependentUpon>frmBul.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMain.Designer.cs">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmOgrenciListe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmOgrenciListe.Designer.cs">
+      <DependentUpon>frmOgrenciListe.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
@@ -65,6 +77,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmBul.resx">
       <DependentUpon>frmBul.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMain.resx">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmOgrenciListe.resx">
+      <DependentUpon>frmOgrenciListe.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -89,6 +107,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Gazi.Sube1.CustomControlsLib\Gazi.Sube1.CustomControlsLib.csproj">
+      <Project>{d150615e-472e-4670-a7d2-202f481ed756}</Project>
+      <Name>Gazi.Sube1.CustomControlsLib</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Gazi.Sube1.OkulApp.BLL\Gazi.Sube1.OkulApp.BLL.csproj">
       <Project>{8972C38C-B63F-48E7-819D-321B66F991D1}</Project>
       <Name>Gazi.Sube1.OkulApp.BLL</Name>
