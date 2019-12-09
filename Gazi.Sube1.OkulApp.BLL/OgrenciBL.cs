@@ -80,7 +80,7 @@ namespace Gazi.Sube1.OkulApp.BLL//Business Logic Layer
           return hlp.ExecuteNonQuery("Delete from tblOgrenciler where OgrenciId=@OgrenciId", p)>0;
         }
 
-        public DataTable OgrenciTable() => hlp.GetDataTable("Select * from tblOgrenciler");
+        public DataTable OgrenciTable() => hlp.GetDataTable("Select o.OgrenciId,o.Ad,o.Soyad,o.Numara,o.SinifId,s.SinifAd from tblOgrenciler o Inner Join tblSiniflar s On o.SinifId=s.SinifId ");
 
         public void Dispose()
         {

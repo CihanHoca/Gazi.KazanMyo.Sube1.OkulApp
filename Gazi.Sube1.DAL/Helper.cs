@@ -76,8 +76,15 @@ namespace Gazi.Sube1.DAL//Data Access Layer
 
         public void Dispose()
         {
-            cn.Dispose();
-            cmd.Dispose();
+            if (cn != null)
+            {
+                cn.Dispose();
+            }
+
+            if (cmd != null)
+            {
+                cmd.Dispose();
+            }
         }
     }
 }
