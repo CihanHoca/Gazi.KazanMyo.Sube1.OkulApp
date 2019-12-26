@@ -20,6 +20,6 @@ namespace Test
         public int Numara { get; set; }
         public int SinifId { get; set; }
     
-        public tblSiniflar tblSiniflar { get; set; }//Navigation Property
+        public virtual tblSiniflar tblSiniflar { get; set; }
     }
 }

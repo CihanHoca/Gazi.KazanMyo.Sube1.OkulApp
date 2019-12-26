@@ -25,8 +25,7 @@ namespace Test
             throw new UnintentionalCodeFirstException();
         }
     
-        //Lazy Loading
-        public  DbSet<tblOgrenciler> tblOgrencilers { get; set; }
-        public  DbSet<tblSiniflar> tblSiniflars { get; set; }
+        public virtual DbSet<tblOgrenciler> tblOgrencilers { get; set; }
+        public virtual DbSet<tblSiniflar> tblSiniflars { get; set; }
     }
 }

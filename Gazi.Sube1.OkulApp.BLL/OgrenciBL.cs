@@ -18,7 +18,7 @@ namespace Gazi.Sube1.OkulApp.BLL//Business Logic Layer
             try
             {               
                 SqlParameter[] p = { new SqlParameter("@Ad", o.Ad), new SqlParameter("@Soyad", o.Soyad), new SqlParameter("@Numara", o.Numara), new SqlParameter("@SinifId", o.Sinifid) };
-                return hlp.ExecuteNonQuery("Insert into tblOgrenciler values(@Ad,@Soyad,@Numara,@SinifId)", p) > 0;
+                return hlp.ExecuteNonQuery("spOgrenciEkle", p,CommandType.StoredProcedure) > 0;
             }
             catch (SqlException ex)
             {
@@ -80,7 +80,7 @@ namespace Gazi.Sube1.OkulApp.BLL//Business Logic Layer
           return hlp.ExecuteNonQuery("Delete from tblOgrenciler where OgrenciId=@OgrenciId", p)>0;
         }
 
-        public DataTable OgrenciTable() => hlp.GetDataTable("Select o.OgrenciId,o.Ad,o.Soyad,o.Numara,o.SinifId,s.SinifAd from tblOgrenciler o Inner Join tblSiniflar s On o.SinifId=s.SinifId ");
+        public DataTable OgrenciTable() => hlp.GetDataTable("spOgrenciListesi",CommandType.StoredProcedure);
 
         public void Dispose()
         {

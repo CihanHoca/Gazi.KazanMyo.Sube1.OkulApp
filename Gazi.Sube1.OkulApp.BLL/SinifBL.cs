@@ -28,6 +28,8 @@ namespace Gazi.Sube1.OkulApp.BLL
 
 
 
+
+
         public void Dispose()
         {
             ((IDisposable)hlp).Dispose();

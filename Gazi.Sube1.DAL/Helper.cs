@@ -13,11 +13,12 @@ namespace Gazi.Sube1.DAL//Data Access Layer
     {
         SqlConnection cn = new SqlConnection(ConfigurationManager.ConnectionStrings["cstr"].ConnectionString);
         SqlCommand cmd;
-        public int ExecuteNonQuery(string cmdtext, SqlParameter[] p)
+        public int ExecuteNonQuery(string cmdtext, SqlParameter[] p,CommandType type=CommandType.Text)
         {
             try
             {
                 cmd = new SqlCommand(cmdtext, cn);
+                cmd.CommandType = type;
                 if (p != null)
                 {
                     cmd.Parameters.AddRange(p);
@@ -51,9 +52,10 @@ namespace Gazi.Sube1.DAL//Data Access Layer
             }
         }
 
-        public DataTable GetDataTable(string cmdtext)
+        public DataTable GetDataTable(string cmdtext,CommandType type)
         {
             SqlDataAdapter da = new SqlDataAdapter(cmdtext, cn);
+            da.SelectCommand.CommandType = type;
             DataTable dt = new DataTable();
             da.Fill(dt);
             return dt;
